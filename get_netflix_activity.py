@@ -166,7 +166,6 @@ class NetflixRetreiver(object):
         # Scroll to the bottom of the page
         original = len(driver.find_elements_by_class_name('retableRow'))
         while True:
-            print('running loop')
             driver.execute_script('window.scrollTo(0, document.body.scrollHeight);')
             time.sleep(2)
             newer = len(driver.find_elements_by_class_name('retableRow'))
