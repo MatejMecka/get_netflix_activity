@@ -103,25 +103,15 @@ class NetflixRetreiver(object):
                     elif i == len(profiles):
                         print('Error: Your profile name (\'%s\') was not found.' % self.profile_name)
                         print('       Please check if you entered the correct profile name in \'userconfig.ini\'')
-                        driver.close()
                 except StaleElementReferenceException:
                     pass
 
-        # Using the commented block of code below didn't work on some systems
-        # So instead a new tab is opened for the 'viewing activity' page
         time.sleep(1)
-        # driver.get('https://www.netflix.com/viewingactivity')
-        # driver.execute_script('window.open(\'https://www.netflix.com/viewingactivity\',\'_blank\');')
-        # driver.switch_to.window(driver.window_handles[-1])
 
         # Wait for browse page to load
         WebDriverWait(driver, 30).until(EC.visibility_of_element_located((By.CLASS_NAME, 'profile-icon')))
         if show_output:
             print('Navigating Site')
-
-        # your_account = driver.find_element_by_link_text('Your Account')
-        # hov = ActionChains(driver).move_to_element(profile_icon).move_to_element(your_account).click()
-        # hov.perform()
 
         # Hover then click sometimes fails, so it runs until it works with a maximum of 3 attempts
         hov_profile = driver.find_element_by_class_name('profile-icon')
