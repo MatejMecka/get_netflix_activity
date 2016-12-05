@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from selenium import webdriver
 from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.common.by import By
@@ -6,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from configparser import ConfigParser
 import time
-
+import codecs
 # Variable that dictates whether output is displayed on the console
 show_output = True
 
@@ -168,7 +170,7 @@ class NetflixRetreiver(object):
             print('Writing activity to \'netflix_activity.txt\'')
 
         # Open output file
-        file = open('netflix_activity.txt', 'w+')
+        file = codecs.open('netflix_activity.txt', 'w+', encoding='utf8')
         # For every item viewed, outputs date and title to output file
         for row in driver.find_elements_by_class_name('retableRow'):
             date_cell = row.find_elements_by_tag_name('div')[0]
